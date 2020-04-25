@@ -1,0 +1,38 @@
+{{ define "slider" }}
+<section class="slider">
+  <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+    <div class="carousel-inner">
+      <div class="item"> <img data-src="images/slider/slider.jpg" alt="First slide" src="images\slider\slider.jpg">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Curabitur sollicitudin tellus nulla, non rhoncus </h1>
+            <p>Amet egestas nisi suscipit nec. Cras ac eros viverra, hendrerit dui ut.</p>
+            <p><a class="btn btn-default btn-lg" href="#" role="button">try now</a><a class="btn btn-default btn-lg" href="#" role="button">details</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="item active"> <img data-src="images/slider/slider1.jpg" alt="Second slide" src="images\slider\slider1.jpg">
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Metus et placerat venenatis, mauris diam ornare neque </h1>
+            <p>Odio sed lobortis mollis, lacus quam ullamcorper orci, id volutpat dolor erat vel nisl.</p>
+            <p><a class="btn btn-default btn-lg" href="#" role="button">get started</a><a class="btn btn-default btn-lg" href="#" role="button">read more</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon carousel-control-left"></span></a> <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon carousel-control-right"></span></a> </div>
+</section>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script type="text/javascript" src="js\jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js\bootstrap.min.js"></script>
+<script type="text/javascript">
+
+$('.carousel').carousel({
+  interval: 3500, // in milliseconds
+  pause: 'none' // set to 'true' to pause slider on mouse hover
+})
+</script>
+{{ end }}
