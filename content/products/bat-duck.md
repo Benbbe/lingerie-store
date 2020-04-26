@@ -6,3 +6,4 @@ title: Bat Duck
 date: 2020-03-02
 ---
 Not the duck you deserve, but the duck you need right now.
+sidi rag rag
