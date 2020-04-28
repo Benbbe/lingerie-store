@@ -1,4 +1,19 @@
 {{ define "main" }}
+{{ $mainUrl := "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/categories/" }}
+{{ $cats :=  getJSON $mainUrl "?io_format=JSON" }}
+
+<div class="row">
+		{{ range  $cats.categories }}
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					{{ .id }}
+					{{ $cat :=  getJSON $mainUrl .id "?io_format=JSON" }}
+					{{ if  $cat.category.is_root_category }}
+						{{ $cat.category.name }}
+					{{ end }}
+					</div>
+		{{ end}}
+</div>
+
 	<div class="row">
         {{ $products := where .Site.RegularPages "Section" "products" }}
         {{ range $products }}
@@ -11,7 +26,7 @@
 					data-item-url="{{ .RelPermalink }}"
 					data-item-description="{{ .Params.description }}"
 					data-item-image="{{ .Params.image }}"
-					data-item-name="{{ .Title }}"><img src="{{ .Params.image }}" alt=""></a>
+					data-item-name="{{ .Title }}"> <<img src="{{ .Params.image }}" alt=""></a>
 					<div class="image-liquid image-holder--original" style="background-image: url('{{ .Params.image }}')">
 					</div>
 				</div>
