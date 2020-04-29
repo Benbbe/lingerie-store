@@ -11,6 +11,7 @@
 						{{ $cat.category.name }}
 					</div>
 					{{ end }}
+
 		{{ end}}
 </div>
 
@@ -20,13 +21,13 @@
 		<div class="col-xs-12 col-sm-6 col-md-4">
 			<article class="card-wrapper">
 				<div class="image-holder">
-					<a href="#" class="image-holder__link snipcart-add-item"
+					<a href="{{ .Permalink }}" class="image-holder__link snipcart-add-item"
 					data-item-id="{{ anchorize .Title }}"
 					data-item-price="{{ .Params.price }}"
 					data-item-url="{{ .RelPermalink }}"
 					data-item-description="{{ .Params.description }}"
 					data-item-image="{{ .Params.image }}"
-					data-item-name="{{ .Title }}"> <<img src="{{ .Params.image }}" alt=""></a>
+					data-item-name="{{ .Title }}"> <img src="{{ .Params.image }}" alt=""></a>
 					<div class="image-liquid image-holder--original" style="background-image: url('{{ .Params.image }}')">
 					</div>
 				</div>
@@ -34,7 +35,7 @@
 				<div class="product-description">
 					<!-- title -->
 					<h1 class="product-description__title">
-						<a href="#">
+						<a href="{{ .Permalink }}">
 							{{ .Title }}
 							</a>
 					</h1>
