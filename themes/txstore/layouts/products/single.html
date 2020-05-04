@@ -1,5 +1,6 @@
 {{ define "product" }}
-	<div class="row">
+<div class="row no-margin grey-info-block text-center">
+	<div class="container">
 		<div class="col-xs-12 col-sm-6 col-md-4">
 			<article class="card-wrapper">
 				<div class="image-holder">
@@ -8,10 +9,20 @@
 					data-item-price="{{ .Params.price }}"
 					data-item-url="{{ .RelPermalink }}"
 					data-item-description="{{ .Params.description }}"
-					data-item-image="/images/products/{{ .Params.image }}"
-					data-item-name="{{ .Title }}"></a>
+					data-item-image="{{ .Params.image }}"
+					data-item-name="{{ .Title }}"><img src="{{ .Params.image }}" alt=""></a>
 					<div class="image-liquid image-holder--original" style="background-image: url('{{ .Params.image }}')">
 					</div>
+					<button class="snipcart-add-item"
+						data-item-id="{{ anchorize .Title }}"
+						data-item-price="{{ .Params.price }}"
+						data-item-url="{{ .RelPermalink }}"
+						data-item-description="{{ .Params.description }}"
+						data-item-image="{{ .Params.image }}"
+						data-item-name="{{ .Title }}"
+						data-item-custom1-name="Gift note">
+						Add to cart
+					</button>
 				</div>
 
 				<div class="product-description">
@@ -25,27 +36,24 @@
 					<!-- category and price -->
 					<div class="row">
 						<div class="col-xs-12 col-sm-4 product-description__price">
-							$ {{ .Params.image }}
+							{{ .Content }}
 						</div>
 						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
 							{{ .Params.description }}
 						</div>
 						<div class="col-xs-12 col-sm-4 product-description__price">
-							$ {{ .Params.price }}
+							{{ .Params.price }}
 						</div>
-
 					</div>
-
 					<!-- divider -->
 					<hr />
-
 					<!-- sizes -->
 					<div class="sizes-wrapper">
 						{{ .Content }}
 					</div>
 				</div>
-
 			</article>
         </div>
+	</div>
 	</div>
 {{ end }}

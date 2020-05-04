@@ -15,6 +15,16 @@
 					data-item-name="{{ .Title }}"> <img src="{{ .Params.image }}" alt=""></a>
 					<div class="image-liquid image-holder--original" style="background-image: url('{{ .Params.image }}')">
 					</div>
+					<button class="snipcart-add-item"
+						data-item-id="{{ anchorize .Title }}"
+						data-item-price="{{ .Params.price }}"
+						data-item-url="{{ .RelPermalink }}"
+						data-item-description="{{ .Params.description }}"
+						data-item-image="{{ .Params.image }}"
+						data-item-name="{{ .Title }}"
+						data-item-custom1-name="Gift note">
+						Add to cart
+					</button>
 				</div>
 
 				<div class="product-description">
