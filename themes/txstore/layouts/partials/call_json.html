@@ -1,15 +1,23 @@
+{{ define "json" }}
 {{ $mainUrl := "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/categories/" }}
 {{ $cats :=  getJSON $mainUrl "?io_format=JSON" "&depth=2"}}
 
-<div class="row">
+		{{ $category_details := newScratch }}
 		{{ range  $cats.categories }}
 					{{ $cat :=  getJSON $mainUrl .id "?io_format=JSON" }}
-					{{ if  eq $cat.category.level_depth "2" }}
-					<div class="col-xs-12 col-sm-6 col-md-4">
-						{{ .id }} --------
-						{{ $cat.category.name }}
-					</div>
-					{{ end }}
-
+					{{ $catId := string $cat.category.id }}
+					{{ $category_details.Set  $catId (dict "depth" $cat.category.level_depth "parent" $cat.category.id_parent "active" $cat.category.active "name" $cat.category.name) }}
 		{{ end}}
+
+<div class="row">
+
+{{ $cat := $category_details.Get "3" }}
+
+{{ range $cat.Get  }}
+	{{ .depth }}
+{{ end }}
+
+
 </div>
+
+{{ end }}
