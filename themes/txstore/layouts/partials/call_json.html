@@ -1,27 +1,19 @@
 {{ define "json" }}
 {{ $mainUrl := "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/categories/" }}
-		{{ range $i, $sequence :=  (seq 5) }}
+		{{ $i := 2 }}
 		<!-- Get the catagories all categories for depth i-->
 		{{ $cats :=  getJSON $mainUrl "?io_format=JSON" "&filter[level_depth]=" $i }}
-		{{ len $cats}}
+		{{ len $cats }}  QQQQQQQQQ {{ $.Site.Params.api_url }}
 		<div class="row">
-
-				{{ range $cats.categories }}
+				{{ range $level1Cats := $cats.categories }}
 				<div class="col-xs-12 col-sm-6 col-md-4">
 						{{ $idStr := printf "%d" (int .id) }}
-						{{ $subcats :=  getJSON $mainUrl "?io_format=JSON" "&filter[id_parent]=" $idStr }}
-						{{ printf "%s%s%s%s" $mainUrl "?io_format=JSON" "&filter[id_parent]=" $idStr}}
-						{{ if $subcats }}
-								{{ range $subcat := $subcats.categories }}
-									{{ $cat :=  getJSON $mainUrl ($subcat.category.id) "?io_format=JSON"  }}
-									{{ $cat.category.name }} {{ $cat.category.id_parent }} subcats length {{ len $subcats}}
-								{{ end }}
-						{{ else }}
-						subcats length {{ len $subcats}}
-						{{ end }}
+						{{ $level1CatUrl := printf ("%s%d%s") $mainUrl (int $idStr) "?io_format=JSON" }}
+						{{ $level1Cat :=  getJSON $level1CatUrl }}
+						{{ $level1Cat.category.id }} {{ $level1Cat.category.name }}
+
 				</div>
 				{{ end }}
 		</div>
 
-		{{ end }}
 {{ end }}

@@ -1,0 +1,16 @@
+{{ if .id }}
+{{ .api_url }}
+{{ $category := getJSON  .api_url "categories/" .id "?io_format=JSON" }}
+
+{{ if $category }}
+<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-4">
+				{{ with $category.category}}
+					id: {{ .id }} -- id_parent: {{ .id_parent }} -- name: {{ .name }}
+				{{ end }}
+		</div>
+		{{ end }}
+</div>
+{{ else }}
+No category with this id
+{{ end }}

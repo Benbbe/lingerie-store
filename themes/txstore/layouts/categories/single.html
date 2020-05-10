@@ -1,62 +1,10 @@
-{{ define "product" }}
-<div class="row no-margin grey-info-block text-center">
-	<div class="container">
-		<div class="col-xs-12 col-sm-6 col-md-4">
-			<article class="card-wrapper">
-				<div class="image-holder">
-					<a href="#" class="image-holder__link snipcart-add-item"
-					data-item-id="{{ anchorize .Title }}"
-					data-item-price="{{ .Params.price }}"
-					data-item-url="{{ .RelPermalink }}"
-					data-item-description="{{ .Params.description }}"
-					data-item-image="{{ .Params.image }}"
-					data-item-name="{{ .Title }}"><img src="{{ .Params.image }}" alt=""></a>
-					<div class="image-liquid image-holder--original" style="background-image: url('{{ .Params.image }}')">
-					</div>
+{{ block "head" . }}
+{{ end }}
 
-					{{ block "json" . }}
-					{{ end }}
-					<button class="snipcart-add-item"
-						data-item-id="{{ anchorize .Title }}"
-						data-item-price="{{ .Params.price }}"
-						data-item-url="{{ .RelPermalink }}"
-						data-item-description="{{ .Params.description }}"
-						data-item-image="{{ .Params.image }}"
-						data-item-name="{{ .Title }}"
-						data-item-custom1-name="Gift note">
-						Add to cart
-					</button>
-				</div>
+{{ block "header" . }}
+{{ end }}
 
-				<div class="product-description">
-					<!-- title -->
-					<h1 class="product-description__title">
-						<a href="#">
-							{{ .Title }}
-							</a>
-					</h1>
+{{ partial "category.html" (dict "id" "3" "api_url" $.Site.Params.api_url) }}
 
-					<!-- category and price -->
-					<div class="row">
-						<div class="col-xs-12 col-sm-4 product-description__price">
-							{{ .Content }}
-						</div>
-						<div class="col-xs-12 col-sm-8 product-description__category secondary-text">
-							{{ .Params.description }}
-						</div>
-						<div class="col-xs-12 col-sm-4 product-description__price">
-							{{ .Params.price }}
-						</div>
-					</div>
-					<!-- divider -->
-					<hr />
-					<!-- sizes -->
-					<div class="sizes-wrapper">
-						{{ .Content }}
-					</div>
-				</div>
-			</article>
-        </div>
-	</div>
-	</div>
+{{ block "end" . }}
 {{ end }}
