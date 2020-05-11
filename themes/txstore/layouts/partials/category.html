@@ -14,3 +14,14 @@
 {{ else }}
 No category with this id
 {{ end }}
+
+<div class="demo-container" ng-app="CategoryApp" ng-controller="CategoryController">
+		<div id="treeview" dx-tree-view="treeViewOptions" ></div>
+		<div class="options">
+				<div class="caption">Options</div>
+				<div class="option">
+						<span>Search mode</span>
+						<div dx-select-box="searchModeOptions"></div>
+				</div>
+		</div>
+</div>
