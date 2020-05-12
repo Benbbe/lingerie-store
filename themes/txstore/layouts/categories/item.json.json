@@ -1,0 +1,4 @@
+{{ $id := 2 }}
+{{ $mainUrl := "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/categories/" }}
+{{ $cats :=  getJSON $mainUrl $id "?io_format=JSON" }}
+{{ $cats|jsonify}}

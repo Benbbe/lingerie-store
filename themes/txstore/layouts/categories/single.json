@@ -1,0 +1,10 @@
+{{ $id := "2" }}
+{{ $mainUrl := "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/categories/" }}
+{{ $cats :=  getJSON $mainUrl $id "?io_format=JSON" }}
+{{ $finalcats := (dict $id $cats.category.name) }}
+{{ range $cats.category.associations.categories }}
+      {{ $subcats :=  getJSON $mainUrl .id "?io_format=JSON" }}
+      {{ $strId := printf "%d" (int $subcats.category.id)}}
+      {{ $finalcats = merge $finalcats (dict $strId $subcats.category.name) }}
+      {{ end }}
+{{ $finalcats|jsonify}}
