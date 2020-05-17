@@ -6,5 +6,5 @@
       {{ $subcats :=  getJSON $mainUrl .id "?io_format=JSON" }}
       {{ $strId := printf "%d" (int $subcats.category.id)}}
       {{ $finalcats = merge $finalcats (dict $strId $subcats.category.name) }}
-      {{ end }}
+{{ end }}
 {{ $finalcats|jsonify}}
