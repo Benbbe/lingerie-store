@@ -1,0 +1,22 @@
+{{- $id := .id -}}
+
+{{- $finalcats := .finalcats -}}
+
+{{- $mainUrl := printf "%s%s" .Site.Params.api_url .Site.Params.api_categories -}}
+
+{{- $maincategory   :=  getJSON $mainUrl $id "?io_format=JSON" -}}
+
+{{- $parentId := printf "%d" (int $maincategory.category.id) -}}
+
+{{- if isset $maincategory.category.associations "categories" -}}
+    {"id":{{ $parentId }},"name",$maincategory.category.name,"subcategories":
+    {{- range $maincategory.category.associations.categories -}}
+        {{- $childId := printf "%d" (int .id) -}}
+        {{- partial "cats-json.json" (dict "Site" $.Site "id" $childId "finalcats" $finalcats) -}}
+    {{- end -}}
+  }
+{{- else -}}
+    {{ $finalcats := merge $finalcats (dict "id" $parentId "name" $maincategory.category.name) }}
+    {{ $finalcats |jsonify}}
+{{- end -}}
+,

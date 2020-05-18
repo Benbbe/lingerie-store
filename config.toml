@@ -6,7 +6,6 @@ theme = "txstore"
 
 [outputs]
   page = ["json"]
-  home = ["html", "json"]
 
 [params]
 api_url = "https://DB9NGVV9D8ZK0UJNJP4GA9R5HX0XT4VT@www.drop-sexy.com/api/"
