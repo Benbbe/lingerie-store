@@ -1,5 +1,3 @@
-{{- $finalcats := .finalcats -}}
-
 {{- $mainUrl := printf "%s%s" .Site.Params.api_url .Site.Params.api_categories -}}
 
 {{- $maincategory   :=  getJSON $mainUrl .id "?io_format=JSON" -}}
@@ -9,11 +7,12 @@
 {{- $finalcats := (dict "id" $parentId "name" $maincategory.category.name) -}}
 
 {{- if isset $maincategory.category.associations "categories" -}}
+    {{ $subcats := slice }}
     {{- range $maincategory.category.associations.categories -}}
         {{- $childId := printf "%d" (int .id) -}}
-        {{- $category   :=  getJSON $mainUrl $childId "?io_format=JSON" -}}
-        {{- .Scratch.Set $childId (dict "id" $childId "name" $category.category.name ) -}}
-        {{ .Scratch.Get $childId }}
+        {{- $category :=  getJSON $mainUrl $childId "?io_format=JSON" -}}
+        {{- $subcats = $subcats|append ((dict "id" $childId "name" $category.category.name)) -}}
     {{- end -}}
+    {{- $finalcats = (merge $finalcats (dict "subcategories" $subcats ))  -}}
 {{- end -}}
-{{- $finalcats |jsonify -}}
+{{- $finalcats | jsonify -}}
