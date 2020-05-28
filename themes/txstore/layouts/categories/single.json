@@ -1,1 +1,1 @@
-{{ partial "cats-json.json" (dict "id" .Params.id "Site" $.Site) }}
+{{ partial "cats-json.json" (dict "id" .File.TranslationBaseName "Site" $.Site) }}

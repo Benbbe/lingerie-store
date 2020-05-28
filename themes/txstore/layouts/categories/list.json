@@ -1,0 +1,3 @@
+{{- range .Pages -}}
+{{- partial "cats-json.json" (dict "id" .File.TranslationBaseName "Site" $.Site) -}}
+{{- end -}}
